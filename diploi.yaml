@@ -1,0 +1,29 @@
+diploiVersion: v1.0
+type: component
+name: Superset
+description: Official Diploi component for Superset
+
+
+hosts:
+  - name: Superset
+    identifier: app
+    urlFormat: '[label].[default-domain]'
+
+connectionStrings:
+  - name: Internal Address
+    value: http://app.${DIPLOI_NAMESPACE}:8088
+    description: This address is for requests from within the deployment and is inaccessible externally.
+
+images:
+  - identifier: app
+    prebuildImage: ghcr.io/diploi/component-superset:[tag]
+
+environmentVariables:
+  - identifier: ADMIN_USERNAME
+    defaultValue: 'admin'
+  - identifier: ADMIN_EMAIL
+    defaultValue: 'admin@superset.com'
+  - identifier: ADMIN_PASSWORD
+    defaultValue: 'admin'
+  - identifier: SUPERSET_CONFIG_PATH
+    defaultValue: '/app/superset_config.py'

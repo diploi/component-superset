@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+*.egg
+dist/
+build/
+
+# Virtualenvs
+venv/
+env/
+.env
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Docker
+docker-compose.override.yml
+*.log
+*.pid
+
+env.*
+
+# Superset specific
+superset.db
+superset_home/
+logs/
+*.db
+*.sqlite
+
+# Secrets and config
+secrets.json
+secrets.yml
+credentials.yaml
+
+# Local scripts and build artifacts
+dist/
+
+# Node modules (if using frontend build)
+node_modules/
+
+# Coverage and reports
+coverage.xml
+
+# Ignore local env files
+.env.local
+.env.*.local
+
+# Ignore generated python bytecode in current directory
+*.pyc
+
+# Local docker image build artifacts
+*.tar
+
+# Misc
+.idea/
+
+# End of file

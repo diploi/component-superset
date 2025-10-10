@@ -1,4 +1,9 @@
 FROM apache/superset:5.0.0
+
+ARG FOLDER=/app
+
+WORKDIR ${FOLDER}
+
 USER root
 
 # Install system dependencies required to build PostgreSQL client bindings
@@ -15,11 +20,9 @@ RUN apt-get update \
     && pip install --upgrade pip \
     && pip install psycopg2-binary
 
-COPY --chown=superset:superset ./superset-init.sh /superset-init.sh
+COPY --chown=devuser:devgroup . /app
 
-RUN chmod +x /superset-init.sh
-
-COPY --chown=superset:superset ./superset_config.py /app/
+RUN chmod +x ./superset-init.sh
 
 USER superset
 

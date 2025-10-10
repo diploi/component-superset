@@ -6,6 +6,8 @@ WORKDIR ${FOLDER}
 
 USER root
 
+ENV SUPERSET_CONFIG_PATH='./superset_config.py'
+
 # Install system dependencies required to build PostgreSQL client bindings
 # (pkg-config, C build tools, and libpq headers) and then install the Python
 # package. Assumes Debian/Ubuntu base image. If using Alpine, replace with the
@@ -20,10 +22,10 @@ RUN apt-get update \
     && pip install --upgrade pip \
     && pip install psycopg2-binary
 
-COPY --chown=devuser:devgroup . /app
+COPY --chown=superset:superset . /app
 
 RUN chmod +x ./superset-init.sh
 
 USER superset
 
-ENTRYPOINT [ "/superset-init.sh" ]
+ENTRYPOINT [ "./superset-init.sh" ]

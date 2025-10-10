@@ -25,5 +25,3 @@ environmentVariables:
     defaultValue: 'admin@superset.com'
   - identifier: ADMIN_PASSWORD
     defaultValue: 'admin'
-  - identifier: SUPERSET_CONFIG_PATH
-    defaultValue: '/app/superset_config.py'

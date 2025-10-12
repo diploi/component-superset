@@ -1,13 +1,19 @@
 #!/bin/bash
 
-# create Admin user, you can read these values from env or anywhere else possible
-superset fab create-admin --username "$ADMIN_USERNAME" --firstname Superset --lastname Admin --email "$ADMIN_EMAIL" --password "$ADMIN_PASSWORD"
+echo "Starting superset-init.sh"
 
-# Upgrading Superset metastore
+# Ensure database is initialized first
+echo "Initializing database..."
 superset db upgrade
 
-# setup roles and permissions
-superset superset init 
+# Setup roles and permissions
+echo "Initializing roles and permissions..."
+superset init
+
+# Create Admin user, you can read these values from env or anywhere else possible
+echo "Creating admin user..."
+superset fab create-admin --username "$ADMIN_USERNAME" --firstname Superset --lastname Admin --email "$ADMIN_EMAIL" --password "$ADMIN_PASSWORD" || true
 
 # Starting server
+echo "Starting Superset server..."
 /bin/sh -c /usr/bin/run-server.sh

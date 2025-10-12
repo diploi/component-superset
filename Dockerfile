@@ -7,14 +7,10 @@ WORKDIR ${FOLDER}
 USER root
 
 ENV SUPERSET_CONFIG_PATH='./superset_config.py'
-ENV FLASK_ENV=production
-ENV FLASK_DEBUG=0
+ENV PYTHONPATH=/app
+ENV FLASK_APP=app:create_app()
 ENV PYTHONUNBUFFERED=1
 
-# Install system dependencies required to build PostgreSQL client bindings
-# (pkg-config, C build tools, and libpq headers) and then install the Python
-# package. Assumes Debian/Ubuntu base image. If using Alpine, replace with the
-# appropriate `apk add` packages (postgresql-dev, build-base, pkgconfig).
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     build-essential \
@@ -25,7 +21,7 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* \
     && pip install --upgrade pip \
-    && pip install psycopg2-binary psycopg2 
+    && pip install psycopg2-binary psycopg2 pillow
 
 # Install psycopg2 in the user's environment as well
 RUN su - superset -c "pip install psycopg2-binary psycopg2"

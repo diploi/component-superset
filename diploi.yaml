@@ -16,10 +16,12 @@ parameterGroups:
       - name: Admin Username
         identifier: ADMIN_USERNAME
         defaultValue: admin
+        type: string
         description: Superset admin username
       - name: Admin Email
         identifier: ADMIN_EMAIL
         defaultValue: admin@superset.com
+        type: string
         description: Superset admin email
       - name: Admin Password
         identifier: ADMIN_PASSWORD

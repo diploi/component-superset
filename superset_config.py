@@ -16,7 +16,7 @@ DATABASE_HOST=os.environ.get("DATABASE_HOST")
 DATABASE_PASSWORD=os.environ.get("DATABASE_PASSWORD")
 DATABASE_USER=os.environ.get("DATABASE_USER")
 DATABASE_PORT=os.environ.get("DATABASE_PORT")
-DATABASE_DIALECT=postgresql
+DATABASE_DIALECT="postgresql"
 
 # Ensure logs are initialized
 STORE_LOGS_REMOTELY = True

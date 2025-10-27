@@ -3,6 +3,29 @@ type: component
 name: Superset
 description: Official Diploi component for Superset
 
+parameterGroups:
+  - name: Superset Environment Variables
+    identifier: SUPERSET_ENV
+    description: Superset application environment variables
+    parameters:
+      - name: AppKey
+        identifier: SECRET_KEY
+        defaultValue: "base64:${generate-random-bytes:32}"
+        type: secret
+        description: Superset application encryption key
+      - name: Admin Username
+        identifier: ADMIN_USERNAME
+        defaultValue: admin
+        description: Superset admin username
+      - name: Admin Email
+        identifier: ADMIN_EMAIL
+        defaultValue: admin@superset.com
+        description: Superset admin email
+      - name: Admin Password
+        identifier: ADMIN_PASSWORD
+        defaultValue: admin
+        type: secret
+        description: Superset admin password
 
 hosts:
   - name: Superset
@@ -18,10 +41,13 @@ images:
   - identifier: app
     prebuildImage: ghcr.io/diploi/component-superset:[tag]
 
-environmentVariables:
-  - identifier: ADMIN_USERNAME
-    defaultValue: 'admin'
-  - identifier: ADMIN_EMAIL
-    defaultValue: 'admin@superset.com'
-  - identifier: ADMIN_PASSWORD
-    defaultValue: 'admin'
+dependencies:
+  - identifier: postgres
+    package: https://github.com/diploi/addon-postgres#v17.2
+    env:
+      include:
+        - POSTGRES_HOST:DATABASE_HOST
+        - POSTGRES_PORT:DATABASE_PORT
+        - POSTGRES_USER:DATABASE_USER
+        - POSTGRES_PASSWORD:DATABASE_PASSWORD
+        - POSTGRES_DB:DATABASE_DB
